@@ -1,7 +1,7 @@
 "use client";
 
+import Header from "@/components/header";
 import { ArrowDownUp, Clipboard, Eraser, Languages } from "lucide-react";
-import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { useCopyToClipboard } from "usehooks-ts";
 
@@ -17,7 +17,7 @@ export default function Home() {
     },
     {
       label: "Bahasa Pasar [WIP]",
-      value: "pasar",
+      value: "pasar Melayu",
     },
     {
       label: "Manglish [WIP]",
@@ -59,39 +59,17 @@ export default function Home() {
   }, [loading]);
 
   const reverse = () => {
-    // switch the translated text to input text
     const temp = inputText;
     const tempLang = selectedLang;
 
-    // if lang is english, switch to malay, else switch to english
     setSelectedLang(tempLang === "English" ? "Malay" : "English");
-
     setInputText(translatedText);
     setTranslatedText(temp);
   };
 
   return (
     <main className="flex w-full min-h-screen flex-col items-center justify-between p-6 sm:p-10 font-sans z-10">
-      <header className="flex flex-row justify-between items-center w-full text-lg">
-        <div className="text-xl">
-          translateMY{" "}
-          <span className="text-xs hidden sm:inline-flex">
-            model by{" "}
-            <Link
-              href="https://huggingface.co/mesolitica/translation-t5-small-standard-bahasa-cased-v2"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ml-1 hover:text-orange-600"
-            >
-              mesolitica
-            </Link>
-          </span>
-        </div>
-        <div className="flex flex-row items-center justify-around gap-8">
-          <span>data</span>
-          <span>faq</span>
-        </div>
-      </header>
+      <Header />
 
       <div className="grid grid-rows-2 w-full px-4 sm:px-8 lg:px-16 gap-8 items-center h-full min-h-[60vh] max-h-[60vh]">
         <div className="flex flex-col self-start gap-4">
@@ -143,7 +121,7 @@ export default function Home() {
               }}
               className="text-white sm:hidden px-4 py-2 bg-orange-500 hover:text-white p-2 text-sm sm:text-lg hover:bg-orange-600 focus:ring-none focus:outline-none flex flex-row gap-2 items-center rounded-md"
             >
-              Translate <Languages className="w-4 h-4" />
+              Translate <Languages className="w-4 h-4 sm:w-6 sm:h-6" />
             </button>
           </div>
           <div className="w-full flex flex-row gap-2 sm:gap-8 justify-center sm:justify-end items-center">
@@ -156,7 +134,7 @@ export default function Home() {
                 className="text-zinc-800 px-4 py-2 hover:text-orange-600 text-sm sm:text-lg flex flex-row gap-2 items-center rounded-md"
               >
                 Clear
-                <Eraser className="w-4 h-4" />
+                <Eraser className="w-4 h-4 sm:w-6 sm:h-6" />
               </button>
             )}
             {translatedText && !loading && (
@@ -166,7 +144,7 @@ export default function Home() {
                   className="text-zinc-800 px-4 py-2 hover:text-orange-600 text-sm sm:text-lg flex flex-row gap-2 items-center rounded-md"
                 >
                   Switch
-                  <ArrowDownUp className="w-4 h-4" />
+                  <ArrowDownUp className="w-4 h-4 sm:w-6 sm:h-6" />
                 </button>
                 <button
                   onClick={(e) => {
@@ -180,7 +158,7 @@ export default function Home() {
                   }}
                   className="text-zinc-800 px-4 py-2 hover:text-orange-600 text-sm sm:text-lg flex flex-row gap-2 items-center rounded-md"
                 >
-                  Copy <Clipboard className="w-4 h-4" />
+                  Copy <Clipboard className="w-4 h-4 sm:w-6 sm:h-6" />
                 </button>
               </>
             )}
@@ -191,7 +169,7 @@ export default function Home() {
               }}
               className="text-white hidden px-4 py-2 bg-orange-500 hover:text-white p-2 text-sm sm:text-lg hover:bg-orange-600 focus:ring-none focus:outline-none sm:flex sm:flex-row gap-2 items-center rounded-md"
             >
-              Translate <Languages className="w-4 h-4" />
+              Translate <Languages className="w-4 h-4 sm:w-6 sm:h-6" />
             </button>
           </div>
         </div>
