@@ -1,6 +1,7 @@
 "use client";
 
 import Header from "@/components/header";
+import { SITE_URL } from "@/lib/constants";
 import { ArrowDownUp, Clipboard, Eraser, Languages } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { useCopyToClipboard } from "usehooks-ts";
@@ -35,7 +36,7 @@ export default function Home() {
     const text = inputText;
     const lang = languages.find(({ label }) => label === selectedLang)!.value;
 
-    const api = "/api/translate";
+    const api = SITE_URL + "/api/translate";
     const url = `${api}?text=${encodeURIComponent(
       text
     )}&lang=${encodeURIComponent(lang)}`;
@@ -50,7 +51,7 @@ export default function Home() {
       setLoading(false);
       setTranslatedText(data.generated_text);
     }
-  }, [loading, inputText, selectedLang]);
+  }, [inputText, selectedLang]);
 
   useEffect(() => {
     if (loading) {
