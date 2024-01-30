@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# translate-my
 
-## Getting Started
+A translation tool based on mesolitica/malaysian-translation on huggingface. Cover Bahasa Melayu > English and vice versa with support for Bahasa Pasar, Manglish and others.
 
-First, run the development server:
+## Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# clone the repo
+git clone https://github.com/0xn1/translate-my.git
+
+# navigate to the dir
+cd translate-my
+
+# install dependencies
+bun i
+
+# setup env file
+mv .env.local.example .env.local
+
+# run dev in port 1331
+bun run dev --port 1331
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Token
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+You need to get [Hugging Face access token](https://huggingface.co/settings/tokens) and paste it in the .env.local file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```
+HF_TOKEN=[YOUR_ACCESS_TOKEN]
+```
 
-## Learn More
+## Stack
 
-To learn more about Next.js, take a look at the following resources:
+- NextJS
+- TailwindCSS
+- Huggingface.js
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Simple UI & UX
+- Translate Malay, English, Bahasa pasar, Manglish, and vice versa
+- Can switch model with any text-generation-inference model in huggingface
 
-## Deploy on Vercel
+## Reference
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [mesolitica translation model](https://huggingface.co/mesolitica/translation-t5-small-standard-bahasa-cased-v2)
+- [mesolitica malaysian-translation space](https://huggingface.co/spaces/mesolitica/malaysian-translation)
+- [malaya docs](https://malaya.readthedocs.io/en/stable/load-augmentation-abstractive.html#Generate)
