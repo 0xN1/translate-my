@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { HfInference } from "@huggingface/inference";
 
+export const maxDuration = 10;
+
 type PredictData = {
   text: string;
   lang: string;
@@ -13,7 +15,7 @@ const predict = async ({ text, lang }: PredictData) => {
     inputs: `terjemah ke ${lang}: ${text}`,
     parameters: {
       temperature: 0.7, // high - less accurate
-      max_time: 60,
+      max_time: 10,
       max_new_tokens: 250,
       top_k: 75, // high - less accurate
       top_p: 0.95, // high - more diverse

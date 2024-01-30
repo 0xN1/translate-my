@@ -36,7 +36,7 @@ export default function Home() {
     const text = inputText;
     const lang = languages.find(({ label }) => label === selectedLang)!.value;
 
-    const api = SITE_URL + "/api/translate";
+    const api = `${SITE_URL}/api/translate`;
     const url = `${api}?text=${encodeURIComponent(
       text
     )}&lang=${encodeURIComponent(lang)}`;
