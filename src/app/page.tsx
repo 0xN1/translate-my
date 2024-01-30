@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowDownUp, Clipboard, Eraser, Languages } from "lucide-react";
+import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { useCopyToClipboard } from "usehooks-ts";
 
@@ -76,16 +77,24 @@ export default function Home() {
         <div className="text-xl">
           translateMY{" "}
           <span className="text-xs hidden sm:inline-flex">
-            model by mesolitica
+            model by{" "}
+            <Link
+              href="https://huggingface.co/mesolitica/translation-t5-small-standard-bahasa-cased-v2"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-1 hover:text-orange-600"
+            >
+              mesolitica
+            </Link>
           </span>
         </div>
-        <div className="flex flex-row items-center justify-around gap-2">
+        <div className="flex flex-row items-center justify-around gap-8">
           <span>data</span>
           <span>faq</span>
         </div>
       </header>
 
-      <div className="grid grid-rows-2 w-full sm:px-8 lg:px-16 gap-8 items-center h-full min-h-[60vh] max-h-[60vh]">
+      <div className="grid grid-rows-2 w-full px-4 sm:px-8 lg:px-16 gap-8 items-center h-full min-h-[60vh] max-h-[60vh]">
         <div className="flex flex-col self-start gap-4">
           <span>Input</span>
           <textarea
@@ -122,7 +131,7 @@ export default function Home() {
               name="lang"
               value={selectedLang}
               className="focus:ring-none focus:outline-none text-sm sm:text-lg max-w-max sm:max-w-xs
-              bg-white border border-transparent hover:border rounded-md 
+              bg-white bg-opacity-5 border border-transparent hover:border rounded-md 
               text-zinc-800 caret-orange-500 
               "
             >

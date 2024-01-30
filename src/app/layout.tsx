@@ -4,8 +4,9 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Translate MY",
-  description: "A client-side translation tool for Bahasa Melayu",
+  title: "translateMY",
+  description:
+    "A translation tool for Bahasa Melayu to English with support for Manglish and Bahasa Pasar.",
 };
 
 export default function RootLayout({
