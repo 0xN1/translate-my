@@ -123,8 +123,6 @@ export default function Home() {
 
       <div className="flex flex-col justify-around h-full w-full items-center">
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 text-4xl w-full items-center justify-between">
-          {/* <span className="text-2xl">Translate</span> */}
-
           <div className="flex flex-row gap-2 w-full justify-around sm:justify-between px-4">
             <select
               onChange={(e) => setSelectedLang(e.target.value)}
@@ -150,19 +148,6 @@ export default function Home() {
             </button>
           </div>
           <div className="w-full flex flex-row gap-2 sm:gap-8 justify-center sm:justify-end items-center">
-            {/* <input
-              type="text"
-              name="text"
-              autoComplete="off"
-              autoCapitalize="off"
-              autoCorrect="off"
-              autoFocus
-              value={inputText}
-              onChange={(e) => setInputText(e.target.value)}
-              placeholder="ingat saya tak tau ke?"
-              className="focus:ring-none focus:outline-none text-xl w-full text-zinc-800"
-            /> */}
-
             {inputText && (
               <button
                 onClick={() => {
@@ -205,13 +190,8 @@ export default function Home() {
               Translate <Languages className="w-4 h-4" />
             </button>
           </div>
-
-          {/* <span>{JSON.stringify(dataResult)}</span> */}
         </div>
       </div>
-      {/* <footer className="text-xs font-mono">
-        Client by N1 / AI Model by Malaya (Thanks mesolitica)
-      </footer> */}
     </main>
   );
 }
