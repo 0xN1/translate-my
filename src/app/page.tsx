@@ -22,7 +22,7 @@ export default function Home() {
   test();
 
   return (
-    <main className="flex w-full min-h-screen flex-col items-center justify-between p-24 font-sans">
+    <main className="flex w-full min-h-screen flex-col items-center justify-between p-16 font-sans">
       <header className="font-mono text-lg">translate-my</header>
       <div className="flex flex-col gap-2 items-center text-4xl font">
         <span>Translate</span>

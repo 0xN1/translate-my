@@ -10,10 +10,15 @@
   },
   "dependencies": {
     "@huggingface/inference": "^2.6.4",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
     "geist": "^1.1.0",
+    "lucide-react": "^0.317.0",
     "next": "14.0.2",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "tailwind-merge": "^2.2.1",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@gradio/client": "^0.8.1",
