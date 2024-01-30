@@ -12,13 +12,12 @@ const predict = async ({ text, lang }: PredictData) => {
     model: "mesolitica/translation-t5-small-standard-bahasa-cased-v2",
     inputs: `terjemah ke ${lang}: ${text}`,
     parameters: {
-      temperature: 0.8, // high - less accurate
+      temperature: 0.7, // high - less accurate
       max_time: 60,
       max_new_tokens: 250,
-      top_k: 100, // high - less accurate
+      top_k: 75, // high - less accurate
       top_p: 0.95, // high - more diverse
       do_sample: true,
-      num_return_sequences: 3,
     },
   });
 
