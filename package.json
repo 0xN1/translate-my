@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@huggingface/inference": "^2.6.4",
     "geist": "^1.1.0",
     "next": "14.0.2",
     "react": "^18",

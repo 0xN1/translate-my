@@ -1,16 +1,23 @@
-import { client } from "@gradio/client";
 import { NextRequest, NextResponse } from "next/server";
+import { HfInference } from "@huggingface/inference";
 
-const url = "https://mesolitica-malaysian-translation.hf.space/";
+type PredictData = {
+  text: string;
+  lang: string;
+};
+const predict = async ({ text, lang }: PredictData) => {
+  const inference = new HfInference(process.env.HF_TOKEN);
 
-type PredictData = [text: string, language: string];
+  const result = await inference.textGeneration({
+    model: "mesolitica/translation-t5-small-standard-bahasa-cased-v2",
+    inputs: `terjemah ke ${lang}: ${text}`,
+    parameters: {
+      temperature: 0.8,
+      max_time: 60,
+      max_new_tokens: 250,
+    },
+  });
 
-const predict = async (data: PredictData) => {
-  const app = await client(url, {});
-  console.log("DATA =>", data);
-  const result = await app.predict("/predict", data);
-
-  console.log("PRED RES =>", result);
   return result;
 };
 
@@ -20,14 +27,11 @@ export async function GET(request: NextRequest) {
   const text = searchParams.get("text");
   const lang = searchParams.get("lang");
 
-  console.log("TEXT =>", text);
-  console.log("LANG =>", lang);
-
   if (!text || !lang) {
     return new Response("Missing text or language", { status: 400 });
   }
 
-  const res = await predict([text, lang]);
+  const res = await predict({ text, lang });
 
   if (!res) {
     return new Response("Failed to translate", { status: 500 });
