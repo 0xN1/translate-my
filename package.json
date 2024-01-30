@@ -18,7 +18,8 @@
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.2.1",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "usehooks-ts": "^2.10.0"
   },
   "devDependencies": {
     "@gradio/client": "^0.8.1",
@@ -29,6 +30,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.0.2",
     "postcss": "^8",
+    "tailwind-scrollbar": "^3.0.5",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
   }
