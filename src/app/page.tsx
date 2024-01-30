@@ -35,7 +35,6 @@ export default function Home() {
     const text = inputText;
     const lang = languages.find(({ label }) => label === selectedLang)!.value;
 
-    //http://localhost:1331
     const api = "/api/translate";
     const url = `${api}?text=${encodeURIComponent(
       text
@@ -171,8 +170,13 @@ export default function Home() {
                 </button>
                 <button
                   onClick={(e) => {
-                    copy(translatedText);
-                    alert("copied");
+                    copy(translatedText).then((success) => {
+                      if (success) {
+                        alert("copied");
+                      } else {
+                        alert("failed");
+                      }
+                    });
                   }}
                   className="text-zinc-800 px-4 py-2 hover:text-orange-600 text-sm sm:text-lg flex flex-row gap-2 items-center rounded-md"
                 >
