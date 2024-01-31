@@ -2,11 +2,51 @@ import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
+import { Viewport } from "next";
+
+const APP_NAME = "TranslateMY";
+const APP_DEFAULT_TITLE = "TranslateMY";
+const APP_TITLE_TEMPLATE = "%s - PWA App";
+const APP_DESCRIPTION =
+  "A translation app for Bahasa Melayu to English with support for Manglish and bahasa pasar.";
+
+export const viewport: Viewport = {
+  themeColor: "#FFFFFF",
+};
 
 export const metadata: Metadata = {
-  title: "translateMY",
-  description:
-    "A translation tool for Bahasa Melayu to English with support for Manglish and Bahasa Pasar.",
+  applicationName: APP_NAME,
+  title: {
+    default: APP_DEFAULT_TITLE,
+    template: APP_TITLE_TEMPLATE,
+  },
+  description: APP_DESCRIPTION,
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: APP_DEFAULT_TITLE,
+    // startUpImage: [],
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    siteName: APP_NAME,
+    title: {
+      default: APP_DEFAULT_TITLE,
+      template: APP_TITLE_TEMPLATE,
+    },
+    description: APP_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary",
+    title: {
+      default: APP_DEFAULT_TITLE,
+      template: APP_TITLE_TEMPLATE,
+    },
+    description: APP_DESCRIPTION,
+  },
 };
 
 export default function RootLayout({
