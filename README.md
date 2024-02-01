@@ -1,5 +1,7 @@
 # translate-my
 
+![translate-my-1](https://github.com/0xN1/translate-my/assets/9148847/7f6454ca-0b51-4695-a5bf-0ffcfc1b2d72)
+
 A translation tool based on mesolitica/malaysian-translation on huggingface. Cover Bahasa Melayu > English and vice versa with support for Bahasa Pasar, Manglish and others.
 
 ## Development
@@ -36,6 +38,8 @@ HF_TOKEN=[YOUR_ACCESS_TOKEN]
 - Huggingface.js
 
 ## Features
+
+![translate-my-2-pwa](https://github.com/0xN1/translate-my/assets/9148847/ba808b88-7fcb-42e4-a1b3-5b1579f18fb7)
 
 - PWA (Add to Home Screen on mobile / Install app in web)
 - Simple UI & UX
