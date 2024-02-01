@@ -37,9 +37,51 @@ HF_TOKEN=[YOUR_ACCESS_TOKEN]
 
 ## Features
 
+- PWA (Add to Home Screen on mobile / Install app in web)
 - Simple UI & UX
 - Translate Malay, English, Bahasa pasar, Manglish, and vice versa
+- API endpoint at `api/translate`
 - Can switch model with any text-generation-inference model in huggingface
+
+## API
+
+### Endpoint
+
+`/api/translate`
+
+### Query Parameter
+
+`text` : input text to be translated (URI encoded)
+
+`lang` : language (pick from options below)
+
+### Language options
+
+> English :
+> `Inggeris`
+
+> Malay :
+> `Malay`
+
+> Bahasa Pasar :
+> `pasar Melayu`
+
+> Manglish :
+> `Manglish`
+
+### Example
+
+```
+/api/translate?text=ikan%20goreng%20sedap%20tak%3F%20banyak%20ke%20merkuri%20dalam%20tu%3F&lang=Inggeris
+```
+
+will return
+
+```json
+{
+  "generated_text": "Is fried fish delicious? Is there a lot of mercury in it?"
+}
+```
 
 ## Reference
 
