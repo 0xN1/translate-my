@@ -5,6 +5,7 @@ import LanguageSelector from "@/components/home/lang-selector";
 import ToolButton from "@/components/home/tool-button";
 import TranslateButton from "@/components/home/translate-button";
 import TranslationFields from "@/components/home/translation-fields";
+import { translateText } from "@/lib/hf";
 import { ArrowDownUp, Clipboard, Eraser } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { useCopyToClipboard } from "usehooks-ts";
@@ -38,17 +39,10 @@ export default function Home() {
   const translate = useCallback(async () => {
     const text = inputText;
     const lang = languages.find(({ label }) => label === selectedLang)!.value;
-
-    const api = `api/translate`;
-    const url = `${api}?text=${encodeURIComponent(
-      text
-    )}&lang=${encodeURIComponent(lang)}`;
-
     setLoading(true);
 
     try {
-      const res = await fetch(url);
-      const data = await res.json();
+      const data = await translateText(text, lang);
 
       if (data.generated_text) {
         setLoading(false);
