@@ -8,8 +8,8 @@ const AboutPage = (props: Props) => {
   return (
     <main className="flex w-full min-h-screen flex-col items-center justify-between p-6 sm:p-10 font-sans z-10">
       <Header />
-      <div className="flex flex-col justify-around items-start w-full min-h-[50vh] px-8 sm:px-24">
-        <h1 className="-ml-1 text-6xl">about</h1>
+      <div className="grid grid-rows-1 w-full max-h-[50vh] h-[50vh] gap-4 px-8 sm:px-24">
+        <h1 className="-ml-1 text-4xl sm:text-6xl self-center">about</h1>
         <div className="text-sm sm:text-2xl">
           <p>
             site built by{" "}
