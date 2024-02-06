@@ -8,7 +8,7 @@ type PredictData = {
 };
 
 export const generateText = async ({ text, lang, time = 60 }: PredictData) => {
-  const inference = new HfInference(process.env.HF_TOKEN);
+  const inference = new HfInference(process.env.NEXT_PUBLIC_HF_TOKEN);
 
   const result = await inference.textGeneration({
     model: "mesolitica/translation-t5-small-standard-bahasa-cased-v2",
@@ -25,6 +25,38 @@ export const generateText = async ({ text, lang, time = 60 }: PredictData) => {
 
   return result;
 };
+
+export const transcribeAudio = async (audio: Blob, token?: string) => {
+  const inference = new HfInference(process.env.HF_TOKEN);
+  console.log(token);
+
+  const audioBlob = audio;
+
+  const result = await inference.automaticSpeechRecognition({
+    model: "mesolitica/malaysian-whisper-tiny",
+    data: await audioBlob.arrayBuffer(),
+  });
+
+  if (!result) {
+    throw new Error("Failed to transcribe");
+  }
+
+  return result;
+};
+
+export const transcribe = cache(async (audio: Blob, token: string) => {
+  if (!audio) {
+    throw new Error("Missing audio");
+  }
+
+  const result = await transcribeAudio(audio, token);
+
+  if (!result) {
+    throw new Error("Failed to transcribe");
+  }
+
+  return result;
+});
 
 export const translateText = cache(async (text: string, lang: string) => {
   if (!text || !lang) {
