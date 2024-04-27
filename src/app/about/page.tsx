@@ -17,7 +17,7 @@ const AboutPage = (props: Props) => {
               href="https://x.com/0xNeroOne"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-orange-600"
+              className="hover:text-orange-600 underline"
             >
               0xN1
             </Link>
@@ -28,7 +28,7 @@ const AboutPage = (props: Props) => {
               href="https://mesolitica.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-orange-600"
+              className="hover:text-orange-600 underline"
             >
               mesolitica
             </Link>{" "}
@@ -37,7 +37,7 @@ const AboutPage = (props: Props) => {
               href="https://github.com/mesolitica/malaya"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-orange-600"
+              className="hover:text-orange-600 underline"
             >
               malaya
             </Link>
@@ -51,17 +51,17 @@ const AboutPage = (props: Props) => {
             href="https://huggingface.co/spaces/mesolitica/malaysian-translation"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-orange-600"
+            className="hover:text-orange-600 underline"
           >
             malaysian-translation spaces
           </Link>
           <Link
-            href="https://huggingface.co/mesolitica/translation-t5-small-standard-bahasa-cased-v2"
+            href="https://huggingface.co/mesolitica/translation-t5-tiny-standard-bahasa-cased"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-orange-600"
+            className="hover:text-orange-600 underline"
           >
-            translation-t5-small-standard-bahasa-cased-v2
+            translation-t5-tiny-standard-bahasa-cased
           </Link>
           <p></p>
         </div>

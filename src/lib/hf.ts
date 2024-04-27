@@ -11,7 +11,7 @@ export const generateText = async ({ text, lang, time = 60 }: PredictData) => {
   const inference = new HfInference(process.env.NEXT_PUBLIC_HF_TOKEN);
 
   const result = await inference.textGeneration({
-    model: "mesolitica/translation-t5-small-standard-bahasa-cased-v2",
+    model: "mesolitica/translation-t5-tiny-standard-bahasa-cased",
     inputs: `terjemah ke ${lang}: ${text}`,
     parameters: {
       temperature: 0.7, // high - less random
@@ -27,7 +27,7 @@ export const generateText = async ({ text, lang, time = 60 }: PredictData) => {
 };
 
 export const transcribeAudio = async (audio: Blob, token?: string) => {
-  const inference = new HfInference(process.env.HF_TOKEN);
+  const inference = new HfInference(process.env.NEXT_PUBLIC_HF_TOKEN);
   console.log(token);
 
   const audioBlob = audio;
