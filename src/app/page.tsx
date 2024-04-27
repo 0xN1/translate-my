@@ -6,9 +6,10 @@ import ToolButton from "@/components/home/tool-button";
 import TranslateButton from "@/components/home/translate-button";
 import TranslationFields from "@/components/home/translation-fields";
 import { translateText } from "@/lib/hf";
-import { ArrowDownUp, Clipboard, Eraser } from "lucide-react";
+import { ArrowDownUp, Clipboard, Eraser, Columns2, Rows2 } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { useCopyToClipboard } from "usehooks-ts";
+import { cn } from "@/lib/utils";
 
 const languages = [
   {
@@ -31,9 +32,10 @@ const languages = [
 
 export default function Home() {
   const [translatedText, setTranslatedText] = useState("");
-  const [inputText, setInputText] = useState("type here");
+  const [inputText, setInputText] = useState("");
   const [selectedLang, setSelectedLang] = useState("English");
   const [loading, setLoading] = useState(false);
+  const [horizontal, setHorizontal] = useState(false);
   const [_, copy] = useCopyToClipboard();
 
   const translate = useCallback(async () => {
@@ -74,7 +76,9 @@ export default function Home() {
     <main className="flex w-full min-h-screen flex-col items-center justify-between p-6 sm:p-10 font-sans z-10">
       <Header />
 
-      <TranslationFields {...{ inputText, setInputText, translatedText }} />
+      <TranslationFields
+        {...{ inputText, setInputText, translatedText, translate, horizontal }}
+      />
 
       <div className="flex flex-col justify-around h-full w-full items-center">
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 text-4xl w-full items-center justify-between">
@@ -82,6 +86,7 @@ export default function Home() {
             <LanguageSelector
               {...{ selectedLang, setSelectedLang, languages }}
             />
+
             <TranslateButton translate={translate} mobile />
           </div>
           <div className="w-full flex flex-row gap-2 sm:gap-8 justify-center sm:justify-end items-center">
@@ -116,6 +121,8 @@ export default function Home() {
                 />
               </>
             )}
+
+            <SwitchLayout {...{ horizontal, setHorizontal }} mobile={false} />
             <TranslateButton translate={translate} />
           </div>
         </div>
@@ -123,3 +130,30 @@ export default function Home() {
     </main>
   );
 }
+
+const SwitchLayout = ({
+  horizontal,
+  setHorizontal,
+  mobile,
+}: {
+  horizontal: boolean;
+  setHorizontal: (val: boolean) => void;
+  mobile?: boolean;
+}) => {
+  return (
+    <>
+      <button
+        onClick={() => setHorizontal(!horizontal)}
+        className={cn(
+          "text-white hidden bg-orange-500 hover:text-white p-2 text-sm sm:text-lg hover:bg-orange-600 focus:ring-none focus:outline-none sm:flex sm:flex-row items-center rounded-md min-w-max "
+        )}
+      >
+        {horizontal ? (
+          <Columns2 className="w-6 h-6" />
+        ) : (
+          <Rows2 className="w-6 h-6" />
+        )}
+      </button>
+    </>
+  );
+};

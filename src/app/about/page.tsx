@@ -8,8 +8,8 @@ const AboutPage = (props: Props) => {
   return (
     <main className="flex w-full min-h-screen flex-col items-center justify-between p-6 sm:p-10 font-sans z-10">
       <Header />
-      <div className="flex flex-col justify-around items-start w-full min-h-[50vh] px-8 sm:px-24">
-        <h1 className="-ml-1 text-6xl">about</h1>
+      <div className="grid grid-rows-1 w-full max-h-[50vh] h-[50vh] gap-4 px-8 sm:px-24">
+        <h1 className="-ml-1 text-4xl sm:text-6xl self-center">about</h1>
         <div className="text-sm sm:text-2xl">
           <p>
             site built by{" "}
@@ -17,7 +17,7 @@ const AboutPage = (props: Props) => {
               href="https://x.com/0xNeroOne"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-orange-600"
+              className="hover:text-orange-600 underline"
             >
               0xN1
             </Link>
@@ -28,7 +28,7 @@ const AboutPage = (props: Props) => {
               href="https://mesolitica.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-orange-600"
+              className="hover:text-orange-600 underline"
             >
               mesolitica
             </Link>{" "}
@@ -37,7 +37,7 @@ const AboutPage = (props: Props) => {
               href="https://github.com/mesolitica/malaya"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-orange-600"
+              className="hover:text-orange-600 underline"
             >
               malaya
             </Link>
@@ -51,17 +51,17 @@ const AboutPage = (props: Props) => {
             href="https://huggingface.co/spaces/mesolitica/malaysian-translation"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-orange-600"
+            className="hover:text-orange-600 underline"
           >
             malaysian-translation spaces
           </Link>
           <Link
-            href="https://huggingface.co/mesolitica/translation-t5-small-standard-bahasa-cased-v2"
+            href="https://huggingface.co/mesolitica/translation-t5-tiny-standard-bahasa-cased"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-orange-600"
+            className="hover:text-orange-600 underline"
           >
-            translation-t5-small-standard-bahasa-cased-v2
+            translation-t5-tiny-standard-bahasa-cased
           </Link>
           <p></p>
         </div>

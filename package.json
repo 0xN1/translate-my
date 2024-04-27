@@ -20,9 +20,11 @@
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-use-websocket": "^4.5.0",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
-    "usehooks-ts": "^2.10.0"
+    "usehooks-ts": "^2.10.0",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@gradio/client": "^0.8.1",

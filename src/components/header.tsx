@@ -1,4 +1,4 @@
-import { BookOpen, Github } from "lucide-react";
+import { BookOpen, Github, Settings } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -17,7 +17,7 @@ const Header = (props: Props) => {
         <span className="text-xs hidden sm:inline-flex mt-1">
           model by{" "}
           <Link
-            href="https://huggingface.co/mesolitica/translation-t5-small-standard-bahasa-cased-v2"
+            href="https://huggingface.co/mesolitica/translation-t5-tiny-standard-bahasa-cased"
             target="_blank"
             rel="noopener noreferrer"
             className="ml-1 hover:text-orange-600"
@@ -38,6 +38,9 @@ const Header = (props: Props) => {
         <Link href="/about" className="hover:text-orange-600">
           <BookOpen className="w-5 h-5 sm:w-6 sm:h-6" />
         </Link>
+        {/* <Link href="/settings" className="hover:text-orange-600">
+          <Settings className="w-5 h-5 sm:w-6 sm:h-6" />
+        </Link> */}
       </div>
     </header>
   );
