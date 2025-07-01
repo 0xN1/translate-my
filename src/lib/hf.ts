@@ -16,6 +16,7 @@ export const generateText = async ({ text, lang }: PredictData) => {
       },
       body: JSON.stringify({
         input: `${text}`,
+        model: "base",
         to_lang: lang,
         top_k: 1,
         top_p: 1,
@@ -27,6 +28,8 @@ export const generateText = async ({ text, lang }: PredictData) => {
 
   const output = await response.json();
 
+  console.log("Response from API:", output);
+
   if (!output || !output.result) {
     throw new Error("Failed to generate text");
   }
@@ -34,6 +37,7 @@ export const generateText = async ({ text, lang }: PredictData) => {
   return {
     text: output.result,
     lang: lang,
+    usage: output.usage || {},
   };
 };
 

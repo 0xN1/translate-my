@@ -6,37 +6,45 @@ import ToolButton from "@/components/home/tool-button";
 import TranslateButton from "@/components/home/translate-button";
 import TranslationFields from "@/components/home/translation-fields";
 import { translateText } from "@/lib/hf";
-import { ArrowDownUp, Clipboard, Eraser, Columns2, Rows2 } from "lucide-react";
+import {
+  ArrowDownUp,
+  Clipboard,
+  Eraser,
+  Columns2,
+  Rows2,
+  BracketsIcon,
+} from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { useCopyToClipboard } from "usehooks-ts";
 import { cn } from "@/lib/utils";
 
 const supportedLang = [
-  "johor",
-  "melaka",
-  "manglish",
-  "local-ms",
-  "mandarin",
-  "sabah",
-  "local-mandarin",
-  "pahang",
-  "cantonese",
-  "en",
-  "terengganu",
-  "perak",
-  "sarawak",
-  "jawi",
-  "banjar",
-  "ms",
-  "kedah",
-  "jawa",
-  "tamil",
-  "negeri sembilan",
+  { label: "English", value: "en", experimental: false },
+  { label: "Malay", value: "ms", experimental: false },
+  { label: "Johor", value: "johor", experimental: true },
+  { label: "Melaka", value: "melaka", experimental: true },
+  { label: "Manglish", value: "manglish", experimental: true },
+  { label: "Local Malay", value: "local-ms", experimental: true },
+  { label: "Mandarin", value: "mandarin", experimental: true },
+  { label: "Sabah", value: "sabah", experimental: true },
+  { label: "Local Mandarin", value: "local-mandarin", experimental: true },
+  { label: "Pahang", value: "pahang", experimental: true },
+  { label: "Cantonese", value: "cantonese", experimental: true },
+  { label: "Terengganu", value: "terengganu", experimental: true },
+  { label: "Perak", value: "perak", experimental: true },
+  { label: "Sarawak", value: "sarawak", experimental: true },
+  { label: "Jawi", value: "jawi", experimental: true },
+  { label: "Banjar", value: "banjar", experimental: true },
+  { label: "Kedah", value: "kedah", experimental: true },
+  { label: "Jawa", value: "jawa", experimental: true },
+  { label: "Tamil", value: "tamil", experimental: true },
+  { label: "Negeri Sembilan", value: "negeri sembilan", experimental: true },
 ];
 
 const languages = supportedLang.map((lang) => ({
-  label: lang.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
-  value: lang,
+  label: lang.label,
+  value: lang.value,
+  experimental: lang.experimental,
 }));
 
 export default function Home() {
@@ -45,11 +53,14 @@ export default function Home() {
   const [selectedLang, setSelectedLang] = useState(supportedLang[0]);
   const [loading, setLoading] = useState(false);
   const [horizontal, setHorizontal] = useState(false);
+  const [totalTokens, setTotalTokens] = useState(0);
   const [_, copy] = useCopyToClipboard();
 
   const translate = useCallback(async () => {
     const text = inputText;
-    const lang = languages.find(({ label }) => label === selectedLang)!.value;
+    const lang = languages.find(
+      ({ label }) => label === selectedLang.label,
+    )!.value;
     setLoading(true);
 
     try {
@@ -58,6 +69,7 @@ export default function Home() {
       if (data.text) {
         setLoading(false);
         setTranslatedText(data.text);
+        setTotalTokens(data.usage?.total_tokens || 0);
       }
     } catch (err) {
       console.log(err);
@@ -76,7 +88,7 @@ export default function Home() {
     const temp = inputText;
     const tempLang = selectedLang;
 
-    const currentIndex = supportedLang.indexOf(tempLang);
+    const currentIndex = supportedLang.findIndex((lang) => lang === tempLang);
     const nextLang =
       currentIndex === supportedLang.length - 1
         ? supportedLang[0]
@@ -99,7 +111,12 @@ export default function Home() {
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 text-4xl w-full items-center justify-between">
           <div className="flex flex-row gap-2 w-full justify-around sm:justify-between px-4">
             <LanguageSelector
-              {...{ selectedLang, setSelectedLang, languages }}
+              selectedLang={selectedLang.value} // Pass the value of the selected language
+              setSelectedLang={(value) => {
+                const lang = supportedLang.find((lang) => lang.value === value);
+                if (lang) setSelectedLang(lang); // Update the selected language object
+              }}
+              languages={languages}
             />
 
             <TranslateButton translate={translate} mobile />
@@ -134,6 +151,12 @@ export default function Home() {
                     });
                   }}
                 />
+                {totalTokens > 0 && (
+                  <div className="text-sm sm:text-sm inline-flex justify-center items-center">
+                    {totalTokens}
+                    <BracketsIcon className="w-4 h-4 sm:w-6 sm:h-6 ml-1" />
+                  </div>
+                )}
               </>
             )}
 
