@@ -14,18 +14,18 @@ export async function GET(request: NextRequest) {
       {
         error: "Missing text or language",
       },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
-  const res = await generateText({ text, lang, time: maxDuration });
+  const res = await generateText({ text, lang });
 
   if (!res) {
     return NextResponse.json(
       {
         error: "Failed to translate",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 

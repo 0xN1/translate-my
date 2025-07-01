@@ -11,29 +11,38 @@ import { useCallback, useEffect, useState } from "react";
 import { useCopyToClipboard } from "usehooks-ts";
 import { cn } from "@/lib/utils";
 
-const languages = [
-  {
-    label: "English",
-    value: "Inggeris",
-  },
-  {
-    label: "Malay",
-    value: "Malay",
-  },
-  {
-    label: "Bahasa Pasar [WIP]",
-    value: "pasar Melayu",
-  },
-  {
-    label: "Manglish [WIP]",
-    value: "Manglish",
-  },
+const supportedLang = [
+  "johor",
+  "melaka",
+  "manglish",
+  "local-ms",
+  "mandarin",
+  "sabah",
+  "local-mandarin",
+  "pahang",
+  "cantonese",
+  "en",
+  "terengganu",
+  "perak",
+  "sarawak",
+  "jawi",
+  "banjar",
+  "ms",
+  "kedah",
+  "jawa",
+  "tamil",
+  "negeri sembilan",
 ];
+
+const languages = supportedLang.map((lang) => ({
+  label: lang.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
+  value: lang,
+}));
 
 export default function Home() {
   const [translatedText, setTranslatedText] = useState("");
   const [inputText, setInputText] = useState("");
-  const [selectedLang, setSelectedLang] = useState("English");
+  const [selectedLang, setSelectedLang] = useState(supportedLang[0]);
   const [loading, setLoading] = useState(false);
   const [horizontal, setHorizontal] = useState(false);
   const [_, copy] = useCopyToClipboard();
@@ -46,9 +55,9 @@ export default function Home() {
     try {
       const data = await translateText(text, lang);
 
-      if (data.generated_text) {
+      if (data.text) {
         setLoading(false);
-        setTranslatedText(data.generated_text);
+        setTranslatedText(data.text);
       }
     } catch (err) {
       console.log(err);
@@ -67,7 +76,13 @@ export default function Home() {
     const temp = inputText;
     const tempLang = selectedLang;
 
-    setSelectedLang(tempLang === "English" ? "Malay" : "English");
+    const currentIndex = supportedLang.indexOf(tempLang);
+    const nextLang =
+      currentIndex === supportedLang.length - 1
+        ? supportedLang[0]
+        : supportedLang[currentIndex + 1];
+
+    setSelectedLang(nextLang);
     setInputText(translatedText);
     setTranslatedText(temp);
   };
@@ -145,7 +160,7 @@ const SwitchLayout = ({
       <button
         onClick={() => setHorizontal(!horizontal)}
         className={cn(
-          "text-white hidden bg-orange-500 hover:text-white p-2 text-sm sm:text-lg hover:bg-orange-600 focus:ring-none focus:outline-none sm:flex sm:flex-row items-center rounded-md min-w-max "
+          "text-white hidden bg-orange-500 hover:text-white p-2 text-sm sm:text-lg hover:bg-orange-600 focus:ring-none focus:outline-none sm:flex sm:flex-row items-center rounded-md min-w-max ",
         )}
       >
         {horizontal ? (
