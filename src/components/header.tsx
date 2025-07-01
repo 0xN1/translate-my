@@ -17,7 +17,7 @@ const Header = (props: Props) => {
         <span className="text-xs hidden sm:inline-flex mt-1">
           model by{" "}
           <Link
-            href="https://huggingface.co/mesolitica/translation-t5-tiny-standard-bahasa-cased"
+            href="https://mesolitica.com"
             target="_blank"
             rel="noopener noreferrer"
             className="ml-1 hover:text-orange-600"

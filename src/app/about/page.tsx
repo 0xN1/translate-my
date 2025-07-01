@@ -31,38 +31,22 @@ const AboutPage = (props: Props) => {
               className="hover:text-orange-600 underline"
             >
               mesolitica
-            </Link>{" "}
-            (
-            <Link
-              href="https://github.com/mesolitica/malaya"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-orange-600 underline"
-            >
-              malaya
             </Link>
-            )
           </p>
           <p>made in malaysia</p>
         </div>
         <div className="text-sm sm:text-2xl break-all flex flex-col">
           <p>ref:</p>
+
           <Link
-            href="https://huggingface.co/spaces/mesolitica/malaysian-translation"
+            href="https://mesolitica.com/translation"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-orange-600 underline"
           >
-            malaysian-translation spaces
+            mesolitica translation
           </Link>
-          <Link
-            href="https://huggingface.co/mesolitica/translation-t5-tiny-standard-bahasa-cased"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-orange-600 underline"
-          >
-            translation-t5-tiny-standard-bahasa-cased
-          </Link>
+
           <p></p>
         </div>
       </div>
